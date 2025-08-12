@@ -1,0 +1,15 @@
+:root{--bg:#f7fafc;--muted:#64748b;--accent:#0b76a8}
+body{font-family:Inter,Arial;max-width:980px;margin:18px auto;padding:14px;background:var(--bg);color:#0b1220}
+.wrap{padding:12px}
+h1{font-size:20px;margin:6px 0}
+label{display:block;margin-top:10px;color:var(--muted);font-size:13px}
+input,textarea{width:100%;padding:10px;border-radius:6px;border:1px solid #dbe6f0;background:#fff;color:#0b1220;box-sizing:border-box}
+textarea{min-height:160px;font-family:monospace}
+.card{background:#fff;padding:12px;border-radius:8px;border:1px solid #e6eef6}
+.small{font-size:13px;color:var(--muted)}
+button{padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
+.result-card{background:#fff;padding:12px;border-radius:8px;border:1px solid #eef2f7;margin-top:12px}
+.ok{color:#16a34a;font-weight:700}.bad{color:#ef4444;font-weight:700}
+table{width:100%;border-collapse:collapse;margin-top:8px}th,td{padding:8px;border-bottom:1px solid #eef2f7;text-align:left}
+.chip{display:inline-block;padding:6px 8px;border-radius:8px;background:#eef9ff;margin:4px}
+@media (max-width:720px){ .row{flex-direction:column} }

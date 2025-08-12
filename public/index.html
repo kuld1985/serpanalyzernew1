@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Free SERP Analyzer — Part 2 (Low-usage)</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>Free SERP Analyzer — Part 2 (Top 10, Low usage)</h1>
+    <div class="card">
+      <div class="small">Optimized for Google CSE free quota (top 10 results). Paste your Blogger HTML in the textarea for accurate on-page checks.</div>
+      <label>Netlify function endpoint</label>
+      <input id="apiUrl" value="/.netlify/functions/serp" />
+      <label>Keyword</label>
+      <input id="keyword" value="prodentim review 2025" />
+      <label>Target URL</label>
+      <input id="target" value="https://www.buyprodentimusa.com" />
+      <label>Your page HTML (optional)</label>
+      <textarea id="myHtml" placeholder="Paste full post HTML for most accurate checks"></textarea>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button id="run">Run Analysis</button>
+        <button id="preview">Auto-Fix Preview</button>
+      </div>
+      <div id="status" class="small">Idle</div>
+    </div>
+    <div id="results"></div>
+    <pre id="raw" style="display:none"></pre>
+    <footer class="small" style="margin-top:14px">Set <strong>GOOGLE_API_KEY</strong> and <strong>CSE_ID</strong> as site-level environment vars in Netlify.</footer>
+  </div>
+<script src="/script.js"></script>
+</body>
+</html>
