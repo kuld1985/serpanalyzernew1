@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Google Search Tool</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SERP Analyzer — Part 2</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Google Search Tool</h1>
-  <input type="text" id="search" placeholder="Enter search term">
-  <button onclick="performSearch()">Search</button>
-  <div id="results"></div>
+  <div class="container">
+    <h1>SERP Analyzer — Part 2 (Free-quota optimized)</h1>
+    <p>Enter your target post URL and target keyword. The server will query Google CSE (top 10), pick first relevant competitor (skips common marketplaces), fetch competitor + your page, and compute a SERP Score + suggestions.</p>
+
+    <label>Target URL</label>
+    <input id="targetUrl" placeholder="https://your-site.com/your-post" />
+
+    <label>Target Keyword</label>
+    <input id="keyword" placeholder="e.g. best probiotic for teeth" />
+
+    <button id="runBtn">Run Analysis</button>
+
+    <div id="status"></div>
+
+    <h2>Report</h2>
+    <pre id="report"></pre>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

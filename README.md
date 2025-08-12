@@ -1,17 +1,34 @@
-# Free SERP Analyzer — Part 2 (Low-usage)
+# SERP Analyzer — Part 2 (Netlify ready)
 
-This package is optimized to stay within Google CSE free quota (top 10 results only).
-Set the following Netlify site environment variables:
-- GOOGLE_API_KEY = your Google API key (Custom Search API enabled)
-- CSE_ID = your Custom Search Engine ID (cx)
+## What it does
+- Uses Google Custom Search (CSE) to fetch top 10 results for a keyword.
+- Skips marketplace/irrelevant domains (configurable).
+- Picks the first relevant competitor and fetches its page content server-side.
+- Optionally fetches your target URL and compares metrics.
+- Calculates a lightweight SERP Score (0-100) and returns suggestions.
 
-Deploy (recommended via GitHub → Netlify) so functions are picked up automatically.
-Publish directory: public
-Functions directory: netlify/functions
+## Files
+- `public/` — frontend (index.html, style.css, script.js)
+- `netlify/functions/analyze.js` — serverless function (main)
+- `netlify/functions/helpers.js` — helper utilities (parsing, scoring)
+- `package.json` — dependencies
+- `README.md` — this file
 
-Quick curl test (after deploy):
-curl -s -X POST "https://<your-site>.netlify.app/.netlify/functions/serp" -H "Content-Type: application/json" -d '{"q":"prodentim review 2025","target":"https://www.buyprodentimusa.com"}' | jq .
+## Environment variables (set these on Netlify)
+- `CSE_ID` — Google Custom Search Engine ID
+- `GOOGLE_API_KEY` — Google API Key
+- Optional: `SKIP_DOMAINS` — comma separated (defaults to amazon.in,amazon.com,flipkart.com,youtube.com)
 
-Notes:
-- Paste your Blogger HTML in the textarea for most accurate on-page checks (server fetch may miss client-rendered content).
-- This version limits processing to top-10 and reduces heavy parsing to remain fast & low-cost.
+## Deploy steps (quick)
+1. Replace your repo files with this project structure or add these files.
+2. Commit & push to GitHub.
+3. On Netlify create site from GitHub (or update existing site's repo).
+4. Set environment variables in Site settings → Build & deploy → Environment.
+5. Trigger deploy → Clear cache and deploy site.
+6. Open the site and use the UI to run analysis.
+
+## Notes & limits
+- This tool is optimized for light use to stay within free CSE quotas. Avoid bulk automated runs.
+- If your target page blocks scraping or uses heavy JS rendering, the raw HTML fetch may not reveal full content.
+- Scoring weights are conservative; you can tweak weights in `analyze.js`.
+

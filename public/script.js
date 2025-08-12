@@ -1,20 +1,17 @@
-async function performSearch() {
-  const query = document.getElementById("search").value;
-  if (!query) return alert("Please enter a search term");
-
-  const res = await fetch(`/.netlify/functions/serp?q=${encodeURIComponent(query)}`);
-  const data = await res.json();
-
-  document.getElementById("results").innerHTML = "";
-
-  if (data.items) {
-    data.items.forEach(item => {
-      const div = document.createElement("div");
-      div.innerHTML = `<h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                       <p>${item.snippet}</p>`;
-      document.getElementById("results").appendChild(div);
-    });
-  } else {
-    document.getElementById("results").innerHTML = "<p>No results found.</p>";
+document.getElementById('runBtn').addEventListener('click', async ()=>{
+  const url = document.getElementById('targetUrl').value.trim();
+  const keyword = document.getElementById('keyword').value.trim();
+  const status = document.getElementById('status');
+  const report = document.getElementById('report');
+  report.textContent = '';
+  if(!keyword){ alert('Please enter a target keyword'); return; }
+  status.textContent = 'Running analysis… (this may take 5–10 seconds)';
+  try{
+    const resp = await fetch(`/.netlify/functions/analyze?keyword=${encodeURIComponent(keyword)}&url=${encodeURIComponent(url||'')}`);
+    const data = await resp.json();
+    status.textContent = 'Done';
+    report.textContent = JSON.stringify(data, null, 2);
+  }catch(err){
+    status.textContent = 'Error: '+err.message;
   }
-}
+});
